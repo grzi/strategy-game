@@ -18,9 +18,14 @@ public class GameController : MonoBehaviour
 
 
         LoadGameObjects();
+        GameLogger.Debug("Main controller instantiated");
         GameLogger.Info("Main controller instantiated");
         GameLogger.Warn("Main controller instantiated");
         GameLogger.Error("Main controller instantiated");
+    }
+
+    void OnApplicationQuit() {
+        GameLogger.CloseLog();
     }
 
     private void LoadGameObjects() {

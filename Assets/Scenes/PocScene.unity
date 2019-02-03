@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   devMode: 1
-  logLevel: 0
+  logLevel: 1
 --- !u!1 &1634485984
 GameObject:
   m_ObjectHideFlags: 0

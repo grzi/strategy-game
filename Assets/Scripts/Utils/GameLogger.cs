@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -7,6 +8,13 @@ public static class GameLogger{
     public static string LOGS_DIR = @"Logs";
     private static FileStream m_FileStream;
     private static StreamWriter m_StreamWriter;
+    private static readonly Dictionary<LogLevel, string> LOGS_LEVEL_MESSAGES = new Dictionary<LogLevel, string>
+{
+    { LogLevel.DEBUG, "[DEBUG]" },
+    { LogLevel.INFO, " [INFO]" },
+    { LogLevel.WARN, " [WARN]" },
+    { LogLevel.ERROR, "[ERROR]" }
+};
 
 
     public static void ConfigureLogging() {
@@ -18,7 +26,6 @@ public static class GameLogger{
         m_FileStream = new FileStream(path, FileMode.Append, FileAccess.Write, FileShare.Read);
         m_StreamWriter = new StreamWriter(m_FileStream);
         m_StreamWriter.AutoFlush = true;
-
     }
 
     private static void PurgeLogs() {
@@ -29,7 +36,6 @@ public static class GameLogger{
             }
         }
     }
-
 
     public static void Debug(string _message) {
         Log(LogLevel.DEBUG, _message);
@@ -53,23 +59,13 @@ public static class GameLogger{
                 UnityEngine.Debug.Log(_logMessage);
             StringBuilder builder = new StringBuilder(getDateTime());
             builder.Append(" - ");
-            builder.Append(getLogLevelAsTxt(_logLevel));
+            builder.Append(LOGS_LEVEL_MESSAGES[_logLevel]);
             builder.Append(" : ");
             builder.Append(_logMessage);
             m_StreamWriter.WriteLine(builder.ToString());
         }
-
     }
-
-    // Todo : Optimise this because we just build new string every time it's disgusting
-    private static string getLogLevelAsTxt(LogLevel _logLevel) {
-        string result = "[" + _logLevel.ToString() + "]";
-        if (_logLevel == LogLevel.INFO || _logLevel == LogLevel.WARN) {
-            result = " " + result;
-        }
-        return result;
-    }
-
+    
     public static string getDateTime() {
         return DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss");
     }
