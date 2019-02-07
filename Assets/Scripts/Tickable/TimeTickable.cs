@@ -8,8 +8,7 @@ public class TimeTickable : ITickable {
     private int tickNb = 0;
 
     public void onTick() {
-        tickNb += 1;
-        if (tickNb == game.Config.TickNbPerDay)
+        if (++tickNb == game.Config.TickNbPerDay)
         {
             game.Data.GameDate.NextDay();
             tickNb = 0;

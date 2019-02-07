@@ -11,7 +11,7 @@ public class Game : MonoBehaviour
 {
     public static Game Instance { get; private set; } = null;
 
-    public GameConfig Config { get; private set; } = new GameConfig();
+    public GameConfig Config { get; private set; }
 
     public GameData Data { get; private set; } = new GameData();
 
@@ -35,5 +35,10 @@ public class Game : MonoBehaviour
     private void LoadGameObjects()
     {
         Config = gameObject.GetComponent<GameConfig>();
+    }
+
+    private void SetConfig(GameConfig c)
+    {
+        Config = c;
     }
 }
