@@ -1,0 +1,5 @@
+﻿
+[System.Serializable]
+class LocalizationData {
+}
+

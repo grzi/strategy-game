@@ -1,13 +1,13 @@
-﻿using Newtonsoft.Json;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
 
 namespace Tests {
     class JsonReaderTests {
 
         class Test {
-            public int Property1 { get; set; }
-            public string Property2 { get; set; }
-            public bool Property3 { get; set; }
+            public int Property1;
+            public string Property2;
+            public bool Property3;
         }
 
         [Test]
@@ -18,7 +18,7 @@ namespace Tests {
 
         [Test]
         public void read_invalid_json_should_throw_exception() {
-            Assert.Throws<JsonReaderException>(
+            Assert.Throws<Exception>(
                 delegate {
                     JsonReader<Test>.read("Assets/Tests/Engine/test_ko.json");
                 }
