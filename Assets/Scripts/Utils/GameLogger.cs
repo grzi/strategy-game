@@ -9,12 +9,12 @@ public static class GameLogger{
     private static FileStream m_FileStream;
     private static StreamWriter m_StreamWriter;
     private static readonly Dictionary<LogLevel, string> LOGS_LEVEL_MESSAGES = new Dictionary<LogLevel, string>
-{
-    { LogLevel.DEBUG, "[DEBUG]" },
-    { LogLevel.INFO, " [INFO]" },
-    { LogLevel.WARN, " [WARN]" },
-    { LogLevel.ERROR, "[ERROR]" }
-};
+            {
+                { LogLevel.DEBUG, "[DEBUG]" },
+                { LogLevel.INFO, " [INFO]" },
+                { LogLevel.WARN, " [WARN]" },
+                { LogLevel.ERROR, "[ERROR]" }
+            };
 
 
     public static void ConfigureLogging() {
@@ -54,8 +54,8 @@ public static class GameLogger{
     }
 
     private static void Log(LogLevel _logLevel, string _logMessage) {
-        if (_logLevel >= GameController.Instance.Config.LogLevel) {
-            if (GameController.Instance.Config.DevMode)
+        if (_logLevel >= Game.Instance.Config.LogLevel) {
+            if (Game.Instance.Config.DevMode)
                 UnityEngine.Debug.Log(_logMessage);
             StringBuilder builder = new StringBuilder(getDateTime());
             builder.Append(" - ");

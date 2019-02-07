@@ -10,6 +10,9 @@ public class GameConfig : MonoBehaviour {
     [SerializeField]
     private LogLevel logLevel = LogLevel.INFO;
 
+    [SerializeField]
+    private int tick_nb_per_day = 24;
+
 
     public bool DevMode {
         get { return devMode; }
@@ -18,4 +21,9 @@ public class GameConfig : MonoBehaviour {
     public LogLevel LogLevel {
         get { return logLevel; }
     }
+    public int TickNbPerDay
+    {
+        get { return tick_nb_per_day; }
+    }
+
 }
