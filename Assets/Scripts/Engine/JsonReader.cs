@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class JsonReader<T> {
     public static T read(String path) {
         try {
             string dataAsJson = File.ReadAllText(path);
-            var result = JsonUtility.FromJson<T>(dataAsJson);
+            var result = JsonConvert.DeserializeObject<T>(dataAsJson);
             return result;
         }
         catch (Exception) {
