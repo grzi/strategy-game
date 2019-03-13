@@ -22,6 +22,16 @@ public class Game : MonoBehaviour
         LoadGameObjects();
     }
 
+    private void Start()
+    {
+        GameObject quad = new GameObject("Quad");
+        MeshFilter meshFilter = (MeshFilter)quad.AddComponent(typeof(MeshFilter));
+
+        meshFilter.mesh = GeometryEngine.createQuad(GeometryEngine.Cubeside.FRONT);
+
+        MeshRenderer renderer = quad.AddComponent(typeof(MeshRenderer)) as MeshRenderer;
+    }
+
     private void InitSingleton()
     {
         if (Instance == null) Instance = this;
