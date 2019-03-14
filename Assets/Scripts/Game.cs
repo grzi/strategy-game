@@ -27,7 +27,16 @@ public class Game : MonoBehaviour
         GameObject quad = new GameObject("Quad");
         MeshFilter meshFilter = (MeshFilter)quad.AddComponent(typeof(MeshFilter));
 
-        meshFilter.mesh = GeometryEngine.createQuad(GeometryEngine.Cubeside.FRONT);
+        MeshData meshData = GeometryEngine.createQuad(GeometryEngine.Cubeside.FRONT);
+        Mesh mesh = new Mesh();
+        mesh.vertices = meshData.Vertices;
+        mesh.normals = meshData.Normals;
+        mesh.uv = meshData.UVs;
+        mesh.triangles = meshData.Triangles;
+        mesh.RecalculateBounds();
+
+        meshFilter.mesh = mesh;
+       // meshFilter.mesh = GeometryEngine.createQuad(GeometryEngine.Cubeside.FRONT);
 
         MeshRenderer renderer = quad.AddComponent(typeof(MeshRenderer)) as MeshRenderer;
     }
