@@ -32,67 +32,67 @@ public static class GeometryEngine
             { CubeVertices.BACK_BOTTOM_RIGHT, new Vector3(0.5f, -0.5f, 0.5f)}
         };
 
-    private static readonly Vector2[] uvs = new Vector2[]
+    private static readonly List<Vector2> uvs = new List<Vector2>
     { new Vector2( 0f, 0f ), new Vector2(1f, 0f), new Vector2(0f, 1f), new Vector2(1f, 1f) };
 
 
-    public static MeshData createQuad(Cubeside side, Vector3 position)
+    public static MeshData createQuad(Cubeside side)
     {
 
-        Vector3[] vertices = new Vector3[4];
-        Vector3[] normals = new Vector3[4];
-        int[] triangles = new int[] {  0, 1, 2,
+        List<Vector3> vertices = new List<Vector3>();
+        List < Vector3 > normals = new List<Vector3>();
+        List < int > triangles = new List<int> {  0, 1, 2,
                                          2, 3, 0 };
 
         switch (side)
         {
             case Cubeside.FRONT:
-                vertices = new Vector3[] {  allVertices[CubeVertices.FRONT_TOP_LEFT],
+                vertices = new List<Vector3> {  allVertices[CubeVertices.FRONT_TOP_LEFT],
                                             allVertices[CubeVertices.FRONT_TOP_RIGHT],
                                             allVertices[CubeVertices.FRONT_BOTTOM_RIGHT],
                                             allVertices[CubeVertices.FRONT_BOTTOM_LEFT] };
-                normals = new Vector3[] { Vector3.forward, Vector3.forward, Vector3.forward, Vector3.forward };
+                normals = new List<Vector3>{ Vector3.forward, Vector3.forward, Vector3.forward, Vector3.forward };
                 break;
             case Cubeside.BACK:
-                vertices = new Vector3[] {  allVertices[CubeVertices.BACK_TOP_LEFT],
+                vertices = new List<Vector3>{  allVertices[CubeVertices.BACK_TOP_LEFT],
                                             allVertices[CubeVertices.BACK_TOP_RIGHT],
                                             allVertices[CubeVertices.BACK_BOTTOM_RIGHT],
                                             allVertices[CubeVertices.BACK_BOTTOM_LEFT] };
-                normals = new Vector3[] { Vector3.back, Vector3.back, Vector3.back, Vector3.back };
+                normals = new  List<Vector3>{ Vector3.back, Vector3.back, Vector3.back, Vector3.back };
                 break;
             case Cubeside.LEFT:
-                vertices = new Vector3[] {  allVertices[CubeVertices.FRONT_TOP_LEFT],
+                vertices = new  List<Vector3>{  allVertices[CubeVertices.FRONT_TOP_LEFT],
                                             allVertices[CubeVertices.BACK_TOP_LEFT],
                                             allVertices[CubeVertices.BACK_BOTTOM_LEFT],
                                             allVertices[CubeVertices.FRONT_BOTTOM_LEFT] };
-                normals = new Vector3[] { Vector3.left, Vector3.left, Vector3.left, Vector3.left };
+                normals = new  List<Vector3>{ Vector3.left, Vector3.left, Vector3.left, Vector3.left };
                 break;
             case Cubeside.RIGHT:
-                vertices = new Vector3[] {  allVertices[CubeVertices.FRONT_TOP_RIGHT],
+                vertices = new  List<Vector3>{  allVertices[CubeVertices.FRONT_TOP_RIGHT],
                                             allVertices[CubeVertices.BACK_TOP_RIGHT],
                                             allVertices[CubeVertices.BACK_BOTTOM_RIGHT],
                                             allVertices[CubeVertices.FRONT_BOTTOM_RIGHT] };
-                normals = new Vector3[] { Vector3.right, Vector3.right, Vector3.right, Vector3.right };
+                normals = new  List<Vector3>{ Vector3.right, Vector3.right, Vector3.right, Vector3.right };
                 break;
             case Cubeside.TOP:
-                vertices = new Vector3[] {  allVertices[CubeVertices.FRONT_TOP_LEFT],
+                vertices = new  List<Vector3>{  allVertices[CubeVertices.FRONT_TOP_LEFT],
                                             allVertices[CubeVertices.BACK_TOP_LEFT],
                                             allVertices[CubeVertices.BACK_TOP_RIGHT],
                                             allVertices[CubeVertices.FRONT_TOP_RIGHT] };
-                normals = new Vector3[] { Vector3.up, Vector3.up, Vector3.up, Vector3.up };
+                normals = new  List<Vector3>{ Vector3.up, Vector3.up, Vector3.up, Vector3.up };
                 break;
             case Cubeside.BOTTOM:
-                vertices = new Vector3[] {  allVertices[CubeVertices.FRONT_BOTTOM_LEFT],
+                vertices = new  List<Vector3>{  allVertices[CubeVertices.FRONT_BOTTOM_LEFT],
                                             allVertices[CubeVertices.BACK_BOTTOM_LEFT],
                                             allVertices[CubeVertices.BACK_BOTTOM_RIGHT],
                                             allVertices[CubeVertices.FRONT_BOTTOM_RIGHT] };
-                normals = new Vector3[] { Vector3.down, Vector3.down, Vector3.down, Vector3.down };
+                normals = new  List<Vector3>{ Vector3.down, Vector3.down, Vector3.down, Vector3.down };
                 break;
             default:
                 break;
         }
 
-        return new MeshData(vertices,normals, triangles, uvs);
+        return new MeshData(vertices, normals, triangles, uvs);
     }
 
     #endregion

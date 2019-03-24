@@ -28,11 +28,19 @@ public class Game : MonoBehaviour
         MeshFilter meshFilter = (MeshFilter)quad.AddComponent(typeof(MeshFilter));
 
         MeshData meshData = GeometryEngine.createQuad(GeometryEngine.Cubeside.FRONT);
+        meshData.Merge(GeometryEngine.createQuad(GeometryEngine.Cubeside.RIGHT));
+        meshData.Merge(GeometryEngine.createQuad(GeometryEngine.Cubeside.LEFT));
+        meshData.Merge(GeometryEngine.createQuad(GeometryEngine.Cubeside.BACK));
+        meshData.Merge(GeometryEngine.createQuad(GeometryEngine.Cubeside.TOP));
+        meshData.Merge(GeometryEngine.createQuad(GeometryEngine.Cubeside.BOTTOM));
+
+
         Mesh mesh = new Mesh();
-        mesh.vertices = meshData.Vertices;
-        mesh.normals = meshData.Normals;
-        mesh.uv = meshData.UVs;
-        mesh.triangles = meshData.Triangles;
+        mesh.vertices = meshData.Vertices.ToArray();
+        mesh.normals = meshData.Normals.ToArray();
+        mesh.uv = meshData.UVs.ToArray();
+
+        mesh.triangles = meshData.Triangles.ToArray();
         mesh.RecalculateBounds();
 
         meshFilter.mesh = mesh;
